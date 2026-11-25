@@ -1,0 +1,1078 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Catastro OVC Callejero",
+    "version": "0.2.0",
+    "description": "JSON (WCF REST) endpoints of the Spanish Cadastre Virtual Office (OVC): street index and non-protected property data by name (COVCCallejero), by codes (COVCCallejeroCodigos) and coordinates (COVCCoordenadas). Operations and parameters follow the service help pages and the DGC \"Servicios web de consulta de datos catastrales no protegidos\" manual; responses not yet observed are untyped."
+  },
+  "servers": [
+    {
+      "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejero.svc/json"
+    }
+  ],
+  "paths": {
+    "/ObtenerProvincias": {
+      "get": {
+        "operationId": "obtenerProvincias",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvinciasResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ObtenerMunicipios": {
+      "get": {
+        "operationId": "obtenerMunicipios",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MunicipiosResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Consulta_DNPRC": {
+      "get": {
+        "operationId": "consultaDnprc",
+        "parameters": [
+          {
+            "name": "RefCat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DnprcResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Consulta_DNPLOC": {
+      "get": {
+        "operationId": "consultaDnploc",
+        "summary": "Non-protected data of a property by location",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sigla",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Calle",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Numero",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Bloque",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Escalera",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Planta",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Puerta",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Consulta_DNPPP": {
+      "get": {
+        "operationId": "consultaDnppp",
+        "summary": "Non-protected data of a property by polygon and parcel",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Poligono",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Parcela",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ObtenerCallejero": {
+      "get": {
+        "operationId": "obtenerCallejero",
+        "summary": "Streets of a municipality",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TipoVia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NomVia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ObtenerNumerero": {
+      "get": {
+        "operationId": "obtenerNumerero",
+        "summary": "Street numbers of a street",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TipoVia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NomVia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Numero",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Consulta_DNPLOC_Codigos": {
+      "get": {
+        "operationId": "consultaDnplocCodigos",
+        "summary": "Non-protected data of a property by location, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoVia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Numero",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Bloque",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Escalera",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Planta",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Puerta",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/Consulta_DNPPP_Codigos": {
+      "get": {
+        "operationId": "consultaDnpppCodigos",
+        "summary": "Non-protected data of a property by polygon and parcel, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Poligono",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Parcela",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/Consulta_DNPRC_Codigos": {
+      "get": {
+        "operationId": "consultaDnprcCodigos",
+        "summary": "Non-protected data of a property by cadastral reference, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RefCat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/ObtenerCallejeroCodigos": {
+      "get": {
+        "operationId": "obtenerCallejeroCodigos",
+        "summary": "Streets of a municipality, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoVia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/ObtenerMunicipiosCodigos": {
+      "get": {
+        "operationId": "obtenerMunicipiosCodigos",
+        "summary": "Municipalities of a province, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/ObtenerNumereroCodigos": {
+      "get": {
+        "operationId": "obtenerNumereroCodigos",
+        "summary": "Street numbers of a street, by codes",
+        "parameters": [
+          {
+            "name": "CodigoProvincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoMunicipioINE",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoVia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Numero",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejeroCodigos.svc/json"
+        }
+      ]
+    },
+    "/Consulta_CPMRC": {
+      "get": {
+        "operationId": "consultaCpmrc",
+        "summary": "Coordinates of a cadastral reference",
+        "parameters": [
+          {
+            "name": "Provincia",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Municipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SRS",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RefCat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCoordenadas.svc/json"
+        }
+      ]
+    },
+    "/Consulta_RCCOOR": {
+      "get": {
+        "operationId": "consultaRccoor",
+        "summary": "Cadastral reference at some coordinates",
+        "parameters": [
+          {
+            "name": "CoorX",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CoorY",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SRS",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCoordenadas.svc/json"
+        }
+      ]
+    },
+    "/Consulta_RCCOOR_Distancia": {
+      "get": {
+        "operationId": "consultaRccoorDistancia",
+        "summary": "Cadastral references near some coordinates",
+        "parameters": [
+          {
+            "name": "CoorX",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CoorY",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SRS",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCoordenadas.svc/json"
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string"
+          },
+          "des": {
+            "type": "string"
+          }
+        }
+      },
+      "Control": {
+        "type": "object",
+        "properties": {
+          "cuprov": {
+            "type": "integer"
+          },
+          "cumun": {
+            "type": "integer"
+          },
+          "cudnp": {
+            "type": "integer"
+          },
+          "cucons": {
+            "type": "integer"
+          },
+          "cuerr": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProvinciasResponse": {
+        "type": "object",
+        "properties": {
+          "consulta_provincieroResult": {
+            "type": "object",
+            "properties": {
+              "control": {
+                "$ref": "#/components/schemas/Control"
+              },
+              "provinciero": {
+                "type": "object",
+                "properties": {
+                  "prov": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cpine": {
+                          "type": "string"
+                        },
+                        "np": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "lerr": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MunicipiosResponse": {
+        "type": "object",
+        "properties": {
+          "consulta_municipieroResult": {
+            "type": "object",
+            "properties": {
+              "control": {
+                "$ref": "#/components/schemas/Control"
+              },
+              "municipiero": {
+                "type": "object",
+                "properties": {
+                  "muni": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "nm": {
+                          "type": "string"
+                        },
+                        "loine": {
+                          "type": "object",
+                          "properties": {
+                            "cp": {
+                              "type": "string"
+                            },
+                            "cm": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "lerr": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DnprcResponse": {
+        "type": "object",
+        "properties": {
+          "consulta_dnprcResult": {
+            "type": "object",
+            "properties": {
+              "control": {
+                "$ref": "#/components/schemas/Control"
+              },
+              "lerr": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              },
+              "bico": {
+                "type": "object",
+                "properties": {
+                  "bi": {
+                    "type": "object",
+                    "properties": {
+                      "ldt": {
+                        "type": "string"
+                      },
+                      "idbi": {
+                        "type": "object",
+                        "properties": {
+                          "cn": {
+                            "type": "string"
+                          },
+                          "rc": {
+                            "type": "object",
+                            "properties": {
+                              "pc1": {
+                                "type": "string"
+                              },
+                              "pc2": {
+                                "type": "string"
+                              },
+                              "car": {
+                                "type": "string"
+                              },
+                              "cc1": {
+                                "type": "string"
+                              },
+                              "cc2": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "debi": {
+                        "type": "object",
+                        "properties": {
+                          "luso": {
+                            "type": "string"
+                          },
+                          "sfc": {
+                            "type": "string"
+                          },
+                          "cpt": {
+                            "type": "string"
+                          },
+                          "ant": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "lcons": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "lcd": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
