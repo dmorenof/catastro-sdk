@@ -14,5 +14,4 @@ final class ConsultaDNPPPCodigos extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaDNPPPCodigos::class)->get($params);
     }
-
 }

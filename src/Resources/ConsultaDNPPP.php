@@ -21,5 +21,4 @@ final class ConsultaDNPPP extends \CatastroSDK\Client
         $result = $this->executeArguments(self::operation(self::GET), parameters: $params);
         return $result;
     }
-
 }

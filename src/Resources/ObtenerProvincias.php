@@ -18,5 +18,4 @@ final class ObtenerProvincias extends \CatastroSDK\Client
         $result = $this->executeOperation(self::operation(self::GET));
         return $result;
     }
-
 }

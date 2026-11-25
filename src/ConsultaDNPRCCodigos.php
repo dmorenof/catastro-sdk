@@ -14,5 +14,4 @@ final class ConsultaDNPRCCodigos extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaDNPRCCodigos::class)->get($params);
     }
-
 }

@@ -7,20 +7,20 @@ namespace CatastroSDK\GetParams;
 final class ConsultaDNPLOCCodigos extends \Dmorenof\SdkRuntime\DTO
 {
     public const array OPERATION_FIELDS = [
-    'path' => [],
-    'query' => [
-        'Bloque' => 'Bloque',
-        'CodigoMunicipio' => 'CodigoMunicipio',
-        'CodigoMunicipioINE' => 'CodigoMunicipioINE',
-        'CodigoProvincia' => 'CodigoProvincia',
-        'CodigoVia' => 'CodigoVia',
-        'Escalera' => 'Escalera',
-        'Numero' => 'Numero',
-        'Planta' => 'Planta',
-        'Puerta' => 'Puerta',
-    ],
-    'header' => [],
-];
+        'path' => [],
+        'query' => [
+            'Bloque' => 'Bloque',
+            'CodigoMunicipio' => 'CodigoMunicipio',
+            'CodigoMunicipioINE' => 'CodigoMunicipioINE',
+            'CodigoProvincia' => 'CodigoProvincia',
+            'CodigoVia' => 'CodigoVia',
+            'Escalera' => 'Escalera',
+            'Numero' => 'Numero',
+            'Planta' => 'Planta',
+            'Puerta' => 'Puerta',
+        ],
+        'header' => [],
+    ];
 
     public ?string $Bloque;
     public ?string $CodigoMunicipio;

@@ -8,5 +8,4 @@ final class BicoDTO extends \Dmorenof\SdkRuntime\DTO
 {
     public \CatastroSDK\DTOs\DnprcResponse\ConsultaDnprcResult\Bico\BiDTO $bi;
     public \CatastroSDK\Collections\DnprcResponse\ConsultaDnprcResult\Bico\LconsCollection $lcons;
-
 }

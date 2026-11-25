@@ -7,14 +7,14 @@ namespace CatastroSDK\GetParams;
 final class ObtenerMunicipiosCodigos extends \Dmorenof\SdkRuntime\DTO
 {
     public const array OPERATION_FIELDS = [
-    'path' => [],
-    'query' => [
-        'CodigoMunicipio' => 'CodigoMunicipio',
-        'CodigoMunicipioINE' => 'CodigoMunicipioINE',
-        'CodigoProvincia' => 'CodigoProvincia',
-    ],
-    'header' => [],
-];
+        'path' => [],
+        'query' => [
+            'CodigoMunicipio' => 'CodigoMunicipio',
+            'CodigoMunicipioINE' => 'CodigoMunicipioINE',
+            'CodigoProvincia' => 'CodigoProvincia',
+        ],
+        'header' => [],
+    ];
 
     public ?string $CodigoMunicipio;
     public ?string $CodigoMunicipioINE;

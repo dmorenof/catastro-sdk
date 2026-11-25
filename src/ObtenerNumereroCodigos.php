@@ -14,5 +14,4 @@ final class ObtenerNumereroCodigos extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ObtenerNumereroCodigos::class)->get($params);
     }
-
 }

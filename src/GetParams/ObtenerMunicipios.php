@@ -7,16 +7,16 @@ namespace CatastroSDK\GetParams;
 final class ObtenerMunicipios extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'Provincia',
-];
+        'Provincia',
+    ];
     public const array OPERATION_FIELDS = [
-    'path' => [],
-    'query' => [
-        'Municipio' => 'Municipio',
-        'Provincia' => 'Provincia',
-    ],
-    'header' => [],
-];
+        'path' => [],
+        'query' => [
+            'Municipio' => 'Municipio',
+            'Provincia' => 'Provincia',
+        ],
+        'header' => [],
+    ];
 
     public ?string $Municipio;
     public string $Provincia;

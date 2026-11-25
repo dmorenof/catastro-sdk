@@ -7,5 +7,4 @@ namespace CatastroSDK\DTOs;
 final class ProvinciasResponse extends \Dmorenof\SdkRuntime\DTO
 {
     public \CatastroSDK\DTOs\ProvinciasResponse\ProvincieroResultDTO $consulta_provincieroResult;
-
 }

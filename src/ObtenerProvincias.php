@@ -11,5 +11,4 @@ final class ObtenerProvincias extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ObtenerProvincias::class)->get();
     }
-
 }

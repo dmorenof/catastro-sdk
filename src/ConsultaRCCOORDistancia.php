@@ -14,5 +14,4 @@ final class ConsultaRCCOORDistancia extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaRCCOORDistancia::class)->get($params);
     }
-
 }

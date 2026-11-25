@@ -14,5 +14,4 @@ final class ConsultaCPMRC extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaCPMRC::class)->get($params);
     }
-
 }

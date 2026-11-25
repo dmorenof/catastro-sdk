@@ -14,5 +14,4 @@ final class ConsultaRCCOOR extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaRCCOOR::class)->get($params);
     }
-
 }

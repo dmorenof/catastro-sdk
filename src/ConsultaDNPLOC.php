@@ -14,5 +14,4 @@ final class ConsultaDNPLOC extends \CatastroSDK\CatastroOVCCallejeroSDK
     {
         return self::client()->resource(\CatastroSDK\Resources\ConsultaDNPLOC::class)->get($params);
     }
-
 }

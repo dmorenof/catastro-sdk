@@ -14,5 +14,4 @@ final class ObtenerMunicipiosCodigos extends \CatastroSDK\CatastroOVCCallejeroSD
     {
         return self::client()->resource(\CatastroSDK\Resources\ObtenerMunicipiosCodigos::class)->get($params);
     }
-
 }
